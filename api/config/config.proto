@@ -1,0 +1,303 @@
+syntax = "proto3";
+
+package saas.api.config.configuration;
+
+option go_package = "github.com/my-saas-platform/saas-api-proto/api/config;configuration";
+option java_multiple_files = true;
+option java_package = "saas.api.config.configuration";
+option java_outer_classname = "SaasApiConfigConfiguration";
+
+import "google/protobuf/duration.proto";
+
+// Bootstrap 配置引导
+message Bootstrap {
+  // App 应用
+  App app = 1;
+  // Server 服务
+  Server server = 2;
+  // Infrastructure 基础
+  Infrastructure infrastructure = 3;
+  // Setting 配置
+  Setting setting = 4;
+
+  // client_api 应用程序接口
+  ClientApi client_api = 50;
+}
+
+// App application
+message App {
+  // belong_to 属于哪个项目
+  string belong_to = 1;
+  // name app名字
+  string name = 2;
+  // version app版本
+  string version = 3;
+  // env app 环境
+  string env = 4;
+  // env_branch 环境分支
+  string env_branch = 5;
+  // endpoints app站点
+  repeated string endpoints = 6;
+  // metadata 元数据
+  map<string, string> metadata = 7;
+}
+
+// Server 服务
+message Server {
+  // HTTP http服务配置
+  message HTTP {
+    // enable 是否启动
+    bool enable = 100;
+    // network 网络
+    string network = 1;
+    // addr 地址
+    string addr = 2;
+    // timeout 超时时间(s)
+    google.protobuf.Duration timeout = 3;
+  }
+  // GRPC grpc服务配置
+  message GRPC {
+    // enable 是否启动
+    bool enable = 100;
+    // network 网络
+    string network = 1;
+    // addr 地址
+    string addr = 2;
+    // timeout 超时时间(s)
+    google.protobuf.Duration timeout = 3;
+  }
+  // http http服务配置
+  HTTP http = 1;
+  // grpc grpc服务配置
+  GRPC grpc = 2;
+}
+
+// Infrastructure 基础
+message Infrastructure{
+  // Log 日志
+  message Log {
+    // Console 输出到控制台
+    message Console {
+      // enable 是否启用
+      bool enable = 1;
+      // level 日志级别；DEBUG、INFO、WARN、ERROR、FATAL
+      string level = 2;
+    }
+    // File 输出到文件
+    message File {
+      // enable 是否启用
+      bool enable = 1;
+      // level 日志级别；DEBUG、INFO、WARN、ERROR、FATAL
+      string level = 2;
+
+      // dir 存储目录
+      string dir = 3;
+      // filename 文件名(默认：${filename}_app.%Y%m%d%H%M%S.log)
+      string filename = 4;
+
+      // rotate_time 轮询规则：n久(默认：86400s # 86400s = 1天)
+      // 轮询规则：默认为：rotate_time(s)
+      google.protobuf.Duration rotate_time = 5;
+      // rotate_size 轮询规则：按文件大小(默认：52428800 # 50<<20 = 50M)
+      // 轮询规则：默认为：rotate_time
+      int64 rotate_size = 6;
+
+      // storage_age 存储n久(默认：2592000s = 30天)
+      // 存储规则：默认为：storage_age(s)
+      google.protobuf.Duration storage_age = 8;
+      // storage_counter 存储：n个 或 有效期storage_age(默认：2592000s = 30天)
+      // 存储规则：默认为：storage_age
+      uint32 storage_counter = 7;
+    }
+    // console 输出到控制台
+    Console console = 1;
+    // file 输出到文件
+    File file = 2;
+  }
+  // MySQL MySQL
+  message MySQL {
+    // enable 是否启动
+    bool enable = 100;
+    string dsn = 1;
+    // slow_threshold 慢查询(s)
+    google.protobuf.Duration slow_threshold = 2;
+    bool logger_enable = 3;
+    bool logger_colorful = 4;
+    // logger_level 日志级别；值：DEBUG、INFO、WARN、ERROR、FATAL
+    string logger_level = 5;
+    // conn_max_active 连接可复用的最大时间
+    uint32 conn_max_active = 6;
+    // conn_max_lifetime 可复用的最大时间(s)
+    google.protobuf.Duration conn_max_lifetime = 7;
+    // conn_max_idle 连接池中空闲连接的最大数量
+    uint32 conn_max_idle = 8;
+    // conn_max_idle_time 设置连接空闲的最长时间(s)
+    google.protobuf.Duration conn_max_idle_time = 9;
+  }
+  // Redis redis
+  message Redis {
+    // enable 是否启动
+    bool enable = 100;
+    repeated string addresses = 1;
+    string username = 2;
+    string password = 3;
+    uint32 db = 4;
+    google.protobuf.Duration dial_timeout = 5; // (s)
+    google.protobuf.Duration read_timeout = 6; // (s)
+    google.protobuf.Duration write_timeout = 7; // (s)
+    // conn_max_active 连接的最大数量
+    uint32 conn_max_active = 8;
+    // conn_max_lifetime 连接可复用的最大时间(s)
+    google.protobuf.Duration conn_max_lifetime = 9;
+    // conn_max_idle 连接池中空闲连接的最大数量
+    uint32 conn_max_idle = 10;
+    uint32 conn_min_idle = 11;
+    // conn_max_idle_time 设置连接空闲的最长时间(s)
+    google.protobuf.Duration conn_max_idle_time = 12;
+  }
+  // PSQL postgres
+  message PSQL {
+    // enable 是否启动
+    bool enable = 100;
+    string dsn = 1;
+    // slow_threshold 慢查询(s)
+    google.protobuf.Duration slow_threshold = 2;
+    bool logger_enable = 3;
+    bool logger_colorful = 4;
+    // logger_level 日志级别；值：DEBUG、INFO、WARN、ERROR、FATAL
+    string logger_level = 5;
+    // conn_max_active 连接可复用的最大时间
+    uint32 conn_max_active = 6;
+    // conn_max_lifetime 可复用的最大时间(s)
+    google.protobuf.Duration conn_max_lifetime = 7;
+    // conn_max_idle 连接池中空闲连接的最大数量
+    uint32 conn_max_idle = 8;
+    // conn_max_idle_time 设置连接空闲的最长时间(s)
+    google.protobuf.Duration conn_max_idle_time = 9;
+  }
+  // Consul consul
+  message Consul {
+    // enable 是否启动
+    bool enable = 100;
+    string scheme = 1;
+    string address = 2;
+    string path_prefix = 3;
+    string datacenter = 4;
+    google.protobuf.Duration wait_time = 5; // (s)
+    string token = 6;
+    string namespace = 7;
+    string partition = 8;
+    bool with_http_basic_auth = 9;
+    string auth_username = 10;
+    string auth_password = 11;
+    bool insecure_skip_verify = 12;
+    string tls_address = 13;
+    string tls_ca_pem = 14;
+    string tls_cert_pem = 15;
+    string tls_key_pem = 16;
+  }
+  // Jaeger jaeger
+  message Jaeger {
+    // enable 是否启动
+    bool enable = 100;
+    string endpoint = 1;
+    bool with_http_basic_auth = 2;
+    string username = 3;
+    string password = 4;
+  }
+  // RabbitMQ rabbitmq
+  message Rabbitmq {
+    // enable 是否启动
+    bool enable = 100;
+    string url = 1;
+    string tls_address = 2;
+    string tls_ca_pem = 3;
+    string tls_cert_pem = 4;
+    string tls_key_pem = 5;
+  }
+  // Snowflake snowflake
+  message Snowflake {
+    // enable 是否启动
+    bool enable = 100;
+    string endpoint = 1;
+    bool with_discovery = 2;
+    bool with_http_basic_auth = 3;
+    string username = 4;
+    string password = 5;
+  }
+  Log log = 1;
+  MySQL mysql = 2;
+  PSQL psql = 3;
+  Redis redis = 4;
+  Rabbitmq rabbitmq = 5;
+  Consul consul = 6;
+  Jaeger jaeger = 7;
+  Snowflake snowflake = 8;
+}
+
+// Setting 设置
+message Setting {
+  // Captcha 验证码
+  message Captcha {
+    uint32 captcha_len = 1; // 验证码长度
+    google.protobuf.Duration captcha_ttl = 2;// 验证码有效时间(s)
+  }
+  // Login 登录
+  message Login {
+    // 密码连续输错N次后短暂锁定账号
+    uint32 password_err_serial_times = 1;
+    // N分钟内连续输出密码(s)
+    google.protobuf.Duration password_err_serial_duration = 2;
+    // 密码连续错误后,锁定N分钟后重试(s)
+    google.protobuf.Duration password_err_lock_duration = 3;
+    // 当日密码错误上限
+    uint32  password_err_daily_limit_times = 4;
+  }
+  // EncryptSecret ...
+  message EncryptSecret {
+    // TransferEncrypt 非对称加密传输,主要用于密码传递等,防止传递过程中明文信息被log,导致泄露
+    message TransferEncrypt {
+      string public_key = 1;
+      string private_key = 2;
+    }
+    // ServiceEncrypt 非对称加密传输,主要用于服务请求鉴权,服务间的鉴权
+    message ServiceEncrypt {
+      string public_key = 1;
+      string private_key = 2;
+    }
+    // TokenEncrypt token
+    message TokenEncrypt {
+      string sign_key = 1;
+      string refresh_key = 2;
+    }
+    TransferEncrypt transfer_encrypt = 1;
+    ServiceEncrypt service_encrypt = 2;
+    TokenEncrypt token_encrypt = 3;
+  }
+  // enable_service_registry 启用服务注册与发现
+  bool enable_service_registry = 1;
+  // enable_snowflake_worker 启用雪花算法
+  bool enable_snowflake_worker = 3;
+  // enable_migrate_db 启用数据库迁移
+  bool enable_migrate_db = 4;
+  // enable_schedule_task 启用定时任务、计划任务
+  bool enable_schedule_task = 5;
+  // Captcha 验证码
+  Captcha captcha = 6;
+  // Login 登录
+  Login login = 7;
+  // secret 密码
+  EncryptSecret encrypt_secret = 8;
+}
+
+// ClientApi 客户端api
+message ClientApi {
+  message Endpoint {
+    string name = 1;
+    string registry_name = 2;
+    string http_host = 3;
+    string grpc_host = 4;
+  }
+  repeated Endpoint cluster_service = 1;
+  repeated Endpoint third_party = 2;
+}

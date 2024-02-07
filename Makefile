@@ -58,5 +58,6 @@ init:
 # include
 include api/makefile_protoc.mk
 # servers
+include api/config/makefile_protoc.mk
 include api/ping-service/makefile_protoc.mk
 
