@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package saas.api.ping.enumv1;
+
+option go_package = "github.com/my-saas-platform/saas-api-proto/api/ping-service/v1/enums;enumv1";
+option java_multiple_files = true;
+option java_package = "saas.api.ping.enumv1";
+option java_outer_classname = "SaasApiPingEnumV1";
+
+// PingInitEnum enum
+message PingInitEnum {
+  // PingInit enum
+  enum PingInit {
+    // UNSPECIFIED 未指定
+    UNSPECIFIED = 0;
+  }
+}
