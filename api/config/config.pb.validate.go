@@ -300,15 +300,13 @@ func (m *App) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for BelongTo
+	// no validation rules for ProjectName
 
-	// no validation rules for Name
+	// no validation rules for ServerName
 
-	// no validation rules for Version
+	// no validation rules for ServerEnv
 
-	// no validation rules for Env
-
-	// no validation rules for EnvBranch
+	// no validation rules for ServerVersion
 
 	// no validation rules for Metadata
 

@@ -26,20 +26,19 @@ message Bootstrap {
 
 // App application
 message App {
-  // belong_to 属于哪个项目
-  string belong_to = 1;
-  // name app名字
-  string name = 2;
-  // version app版本
-  string version = 3;
-  // env app 环境
-  string env = 4;
-  // env_branch 环境分支
-  string env_branch = 5;
-  // endpoints app站点
-  repeated string endpoints = 6;
+  // project_name 项目名称；例：my-saas-platform
+  string project_name = 1;
+  // server_name 服务app名字；例：saas-ping-server
+  string server_name = 2;
+  // server_env app 环境
+  string server_env = 3;
+  // server_version app版本
+  string server_version = 4;
+  // http_endpoints app站点
+  repeated string http_endpoints = 6;
+  repeated string grpc_endpoints = 7;
   // metadata 元数据
-  map<string, string> metadata = 7;
+  map<string, string> metadata = 100;
 }
 
 // Server 服务

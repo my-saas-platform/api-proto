@@ -61,3 +61,7 @@ include api/makefile_protoc.mk
 include api/config/makefile_protoc.mk
 include api/ping-service/makefile_protoc.mk
 
+.PHONY: echo
+# echo test content
+echo:
+	@echo $(CURRENT_PATH)

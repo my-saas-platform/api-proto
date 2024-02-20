@@ -22,30 +22,26 @@ func ID(appConfig *configs.App) string {
 }
 
 // ConfigPath 配置路径；用于配置中心，如：consul、etcd、...
-// @result = app.BelongTo + "/" + app.RuntimeEnv + "/" + app.Branch + "/" + app.Version + "/" + app.Name
+// @result = app.ProjectName + "/" + app.ServerName + "/" + app.ServerEnv + "/" + app.ServerVersion
 // 例：go-srv-saas/DEVELOP/main/v1.0.0/user-service
 func ConfigPath(appConfig *configs.App) string {
 	return appIdentifier(appConfig, _configPathSep)
 }
 
 // appIdentifier app 唯一标准
-// @result = app.BelongTo + "/" + app.RuntimeEnv + "/" + app.Branch + "/" + app.Version + "/" + app.Name
+// @result = app.ProjectName + "/" + app.ServerName + "/" + app.ServerEnv + "/" + app.ServerVersion
 // 例：go-srv-saas/DEVELOP/main/v1.0.0/user-service
 func appIdentifier(appConfig *configs.App, sep string) string {
 	var ss = make([]string, 0, 5)
-	if appConfig.BelongTo != "" {
-		ss = append(ss, appConfig.BelongTo)
+	if appConfig.ProjectName != "" {
+		ss = append(ss, appConfig.ProjectName)
 	}
-	ss = append(ss, apppkg.ParseEnv(appConfig.Env).String())
-	if appConfig.EnvBranch != "" {
-		branchString := strings.Replace(appConfig.EnvBranch, " ", ":", -1)
-		ss = append(ss, branchString)
+	if appConfig.ServerName != "" {
+		ss = append(ss, appConfig.ServerName)
 	}
-	if appConfig.Version != "" {
-		ss = append(ss, appConfig.Version)
-	}
-	if appConfig.Name != "" {
-		ss = append(ss, appConfig.Name)
+	ss = append(ss, apppkg.ParseEnv(appConfig.ServerEnv).String())
+	if appConfig.ServerVersion != "" {
+		ss = append(ss, appConfig.ServerVersion)
 	}
 	return strings.Join(ss, sep)
 }
