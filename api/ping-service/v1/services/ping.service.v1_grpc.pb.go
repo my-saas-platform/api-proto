@@ -8,7 +8,7 @@ package servicev1
 
 import (
 	context "context"
-	resources "github.com/my-saas-platform/saas-api-proto/api/ping-service/v1/resources"
+	resources "github.com/my-saas-platform/api-proto/api/ping-service/v1/resources"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

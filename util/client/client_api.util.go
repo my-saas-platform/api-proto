@@ -2,8 +2,8 @@ package clientutil
 
 import (
 	errorpkg "github.com/ikaiguang/go-srv-kit/kratos/error"
-	configs "github.com/my-saas-platform/saas-api-proto/api/config"
-	setuputil "github.com/my-saas-platform/saas-api-proto/util/setup"
+	configs "github.com/my-saas-platform/api-proto/api/config"
+	setuputil "github.com/my-saas-platform/api-proto/util/setup"
 )
 
 // ServiceName ...

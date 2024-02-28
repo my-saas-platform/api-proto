@@ -2,7 +2,7 @@ package clientutil
 
 import (
 	pingservicev1 "github.com/ikaiguang/go-srv-kit/api/ping/v1/services"
-	setuputil "github.com/my-saas-platform/saas-api-proto/util/setup"
+	setuputil "github.com/my-saas-platform/api-proto/util/setup"
 )
 
 // NewPingGRPCClient ...

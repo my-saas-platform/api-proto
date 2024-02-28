@@ -7,7 +7,7 @@ import (
 	"github.com/go-kratos/kratos/v2/middleware/selector"
 	"github.com/go-kratos/kratos/v2/transport"
 	authpkg "github.com/ikaiguang/go-srv-kit/kratos/auth"
-	setuputil "github.com/my-saas-platform/saas-api-proto/util/setup"
+	setuputil "github.com/my-saas-platform/api-proto/util/setup"
 )
 
 // TransportServiceKind 通行类型

@@ -11,7 +11,7 @@ import (
 	apppkg "github.com/ikaiguang/go-srv-kit/kratos/app"
 	authpkg "github.com/ikaiguang/go-srv-kit/kratos/auth"
 	registrypkg "github.com/ikaiguang/go-srv-kit/kratos/registry"
-	configs "github.com/my-saas-platform/saas-api-proto/api/config"
+	configs "github.com/my-saas-platform/api-proto/api/config"
 	pkgerrors "github.com/pkg/errors"
 	"github.com/redis/go-redis/v9"
 	"go.opentelemetry.io/otel/exporters/jaeger"

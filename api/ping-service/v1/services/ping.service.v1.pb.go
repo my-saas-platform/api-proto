@@ -7,7 +7,7 @@
 package servicev1
 
 import (
-	resources "github.com/my-saas-platform/saas-api-proto/api/ping-service/v1/resources"
+	resources "github.com/my-saas-platform/api-proto/api/ping-service/v1/resources"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"

@@ -7,7 +7,7 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/http"
 	apppkg "github.com/ikaiguang/go-srv-kit/kratos/app"
 	errorpkg "github.com/ikaiguang/go-srv-kit/kratos/error"
-	configs "github.com/my-saas-platform/saas-api-proto/api/config"
+	configs "github.com/my-saas-platform/api-proto/api/config"
 )
 
 const (

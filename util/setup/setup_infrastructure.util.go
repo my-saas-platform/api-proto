@@ -12,7 +12,7 @@ import (
 	psqlpkg "github.com/ikaiguang/go-srv-kit/data/postgres"
 	redispkg "github.com/ikaiguang/go-srv-kit/data/redis"
 	middlewarepkg "github.com/ikaiguang/go-srv-kit/kratos/middleware"
-	apputil "github.com/my-saas-platform/saas-api-proto/util/app"
+	apputil "github.com/my-saas-platform/api-proto/util/app"
 	pkgerrors "github.com/pkg/errors"
 	"github.com/redis/go-redis/v9"
 	"go.opentelemetry.io/otel/exporters/jaeger"

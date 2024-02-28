@@ -9,7 +9,7 @@ import (
 	psqlpkg "github.com/ikaiguang/go-srv-kit/data/postgres"
 	redispkg "github.com/ikaiguang/go-srv-kit/data/redis"
 	debugpkg "github.com/ikaiguang/go-srv-kit/debug"
-	configs "github.com/my-saas-platform/saas-api-proto/api/config"
+	configs "github.com/my-saas-platform/api-proto/api/config"
 	pkgerrors "github.com/pkg/errors"
 )
 
